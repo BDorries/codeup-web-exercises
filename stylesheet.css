@@ -3,4 +3,5 @@ html{
 }
 .border {
     border: solid darkmagenta 2px;
+    width: 50%;
 }
