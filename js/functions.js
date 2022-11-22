@@ -10,7 +10,7 @@
  */
 
 function sayHello(name){
-    alert(`Hello, ${name}`);
+    return `Hello, ${name}`;
 }
 
 /**
@@ -22,6 +22,7 @@ function sayHello(name){
  */
 
 let helloMessage = sayHello("Billie");
+console.log(helloMessage);
 
 /**
  * TODO:
