@@ -5,3 +5,13 @@ html{
     border: solid darkmagenta 2px;
     width: 50%;
 }
+body{
+    margin: 0;
+}
+
+.topBanner{
+    width: 100%;
+    text-align: center;
+    background-color: burlywood;
+
+}
