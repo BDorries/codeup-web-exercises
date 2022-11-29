@@ -76,6 +76,16 @@ function sumCardValue(hand){
     return totalCardValue;
 }
 
+function dealToHand(hand){
+    hand.push(deck.pop());
+    hand.push(deck.pop())
+}
+
+function hit(hand){
+    hand.push(deck.pop());
+    displayPlayerHand();
+}
+
 //------Deck creation------//
 
 //Create a deck of cards that are in order
