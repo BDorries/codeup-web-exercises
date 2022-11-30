@@ -12,18 +12,21 @@ var houseCardTotal = 0;
 //------Functions------//
 
 function displayMainMenu(){
+    //TODO: input validation
 console.log(`
     Welcome to Blackjack! Good luck.\n
     Player's Score: ${playerScore}\t\tHouse's score: ${houseScore}\n
     \n
     Please select an option:\n
-    1. Play a hand.
+    1. Play a hand.\n
     2. Exit game.
-`)}
+`)
+    let mainMenuChoice = prompt("Select an option.")
+    return mainMenuChoice;
+}
 
 function gameMenu(){
     //TODO: input Validation
-    let gameMenuChoice = prompt("Select an option.");
     console.log(`
 
     Please select an option:\n
@@ -31,14 +34,21 @@ function gameMenu(){
     2. Stand.\n
     3. Return to main menu.
     `)
+    let gameMenuChoice = prompt("Select an option.");
     return gameMenuChoice;
 }
 
-function displayPlayerHand(hand){
-    console.log(`Your hand:\n${displayHand(hand)}`);
-    playerCardTotal = sumCardValue(hand);
-    console.log(`Card value: ${playerCardTotal}`);
+function computerTurn() {
+
+    if(houseCardTotal > 21){
+        return -1;
+    }
+
+
+    return 0;
 }
+
+
 //------Game Loop------//
 let quit = false;
 let playingHand = false;
@@ -46,8 +56,8 @@ let menuChoice = 0;
 let handChoice = 0;
 
 while (!quit){
-    displayMainMenu();
-    menuChoice = prompt("Select an option.");
+
+    menuChoice = displayMainMenu();
 
     switch (parseInt(menuChoice)) {
         case 1 :
@@ -60,20 +70,28 @@ while (!quit){
             console.log("Invalid choice. Please press 1 or 2")
     }
     if(playingHand){
-        dealToHand(playerHand);
+        playerHand = dealToHand(playerHand);
+        houseHand = dealToHand(houseHand);
+        let houseTurn = false;
+        displayPlayerHand(playerHand);
+        displayHouseHand(houseHand);
         while(playingHand){
-
-            gameMenu();
-            handChoice = prompt(`What would you like to do?`);
-
+            //player turn
+            handChoice = gameMenu();
             switch (parseInt(handChoice)) {
                 case 1 :
-                    hit(playerHand);
-                    displayPlayerHand(playerHand)
+                    displayPlayerHand(playerHand);
+                    playerHand = hit(playerHand);
+                    break;
                 case 2 :
-                    //houseTurn = true;
+                    //todo: houseTurn = true;
+                    break;
                 case 3 :
                     playingHand = false;
+            }
+            //house turn
+            if(houseTurn){
+                houseCardTotal = computerTurn();
             }
         }
     }

@@ -59,7 +59,7 @@ function shuffleDeck(deck){
     return deck;
 }
 
-function displayHand(hand){
+function writeHand(hand){
     let stringBuilder = '';
 
     for (let i = 0; i < hand.length; i++){
@@ -76,14 +76,28 @@ function sumCardValue(hand){
     return totalCardValue;
 }
 
+function displayPlayerHand(hand){
+    console.log(`Your hand:\n${writeHand(hand)}`);
+    playerCardTotal = sumCardValue(hand);
+    console.log(`Card value: ${playerCardTotal}`);
+}
+
+function displayHouseHand(hand){
+    console.log(`The House's hand:\n${writeHand(hand)}`);
+    houseCardTotal = sumCardValue(hand);
+    console.log(`The House's visible card value: ${houseCardTotal}`);
+}
+
 function dealToHand(hand){
     hand.push(deck.pop());
-    hand.push(deck.pop())
+    hand.push(deck.pop());
+    return hand;
 }
 
 function hit(hand){
     hand.push(deck.pop());
-    displayPlayerHand();
+    displayPlayerHand(hand);
+    return hand;
 }
 
 //------Deck creation------//
