@@ -10,8 +10,9 @@ do{
         console.log(`That number is out of bounds. PLease choose a number between 1 and 49`)
         continue;
     }
-    if (typeof(parseInt(userNumber)) != 'number'){
+    if (!isFinite(userNumber)){
         console.log(`That is not a number`);
+        continue;
     }
     valid=true;
 }while(!valid)
