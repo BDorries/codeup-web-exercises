@@ -59,7 +59,7 @@ function shuffleDeck(deck){
     return deck;
 }
 
-function writeHand(hand){
+function writeHand(Player){
     let stringBuilder = '';
 
     for (let i = 0; i < hand.length; i++){
@@ -81,7 +81,7 @@ function writeHouseHand(hand){
     return stringBuilder;
 }
 
-function sumCardValue(hand){
+function sumCardValue(Player){
     let totalCardValue = 0;
     for (let i = 0; i < hand.length; i++){
         totalCardValue += hand[i].cardValue;

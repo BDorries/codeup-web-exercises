@@ -1,13 +1,17 @@
 "use strict"
 
 class Player{
-    constructor(name, score, cardValue){
+    constructor(name, hand){
         this.name = name;
-        this.score = score;
-        this.cardValue = cardValue;
+        this.hand = hand;
+        this.score = 0;
+        this.cardValue = 0;
     }
     getName(){
         return this.name;
+    }
+    getHand(){
+        return this.hand;
     }
     getScore(){
         return this.score;
@@ -15,5 +19,7 @@ class Player{
     getCardValue(){
         return this.cardValue;
     }
-
+    incrementScore(){
+        this.score++;
+    }
 }

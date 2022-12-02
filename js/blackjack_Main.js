@@ -1,13 +1,10 @@
 "use strict";
 
-var playerHand = [];
-var houseHand = [];
+let playerHand = [];
+let houseHand = [];
 
-var playerScore = 0;
-var houseScore = 0;
-
-var playerCardTotal = 0;
-var houseCardTotal = 0;
+const player = new Player("Player",playerHand);
+const house = new Player("House",houseHand)
 
 //------Functions------//
 
@@ -15,14 +12,13 @@ function displayMainMenu(){
     //TODO: input validation
 console.log(`
     Welcome to Blackjack! Good luck.\n
-    Player's Score: ${playerScore}\t\tHouse's score: ${houseScore}\n
+    Player's Score: ${player.getScore}\t\tHouse's score: ${house.getScore}\n
     \n
     Please select an option:\n
     1. Play a hand.\n
     2. Exit game.
 `)
-    let mainMenuChoice = prompt("Select an option.")
-    return mainMenuChoice;
+    return prompt("Select an option.");
 }
 
 function gameMenu(){
@@ -34,8 +30,7 @@ function gameMenu(){
     2. Stand.\n
     3. Return to main menu.
     `)
-    let gameMenuChoice = prompt("Select an option.");
-    return gameMenuChoice;
+    return prompt("Select an option.");
 }
 
 function isHandOver(hand){
@@ -64,11 +59,10 @@ while (!quit){
             console.log("Invalid choice. Please press 1 or 2")
     }
     if(playingHand){
-        playerHand = dealToHand(playerHand);
-        houseHand = dealToHand(houseHand);
-        let houseTurn = false;
-        displayPlayerHand(playerHand);
-        displayHouseHand(houseHand);
+        playerHand = dealToHand(player.hand);
+        houseHand = dealToHand(house.hand);
+        displayPlayerHand(player.hand);
+        displayHouseHand(house.hand);
         let playerStand = false;
         let houseStand = false;
         while(playingHand){
@@ -77,8 +71,8 @@ while (!quit){
             if(!playerStand){
                 handChoice = gameMenu();
                 if(parseInt(handChoice)===1){
-                    displayPlayerHand(playerHand);
-                    playerHand = hit(playerHand);
+                    displayPlayerHand(player.hand);
+                    playerHand = hit(player.hand);
                 }
                 if (parseInt(handChoice)===1){
                     playerStand = true;
@@ -91,24 +85,24 @@ while (!quit){
 
             //house turn
             if(!houseStand){
-                if(houseCardTotal === 21){
-                    houseScore++;
+                if(house.getCardValue() === 21){
+                    house.incrementScore();
                     playingHand = false;
                     console.log(`House wins with a hand valued at 21`)
                 }else
-                if (houseCardTotal <= 17){
+                if (house.getCardValue() <= 17){
                     console.log(`The house hits...`)
                     houseHand = hit(houseHand);
                     displayHouseHand(houseHand);
                 } else
-                if(houseCardTotal > 21){
-                    playerScore++;
+                if(house.getCardValue() > 21){
+                    player.incrementScore();
                     playingHand = false;
-                    console.log(`The house busts with a ${houseCardTotal}`)
+                    console.log(`The house busts with a ${house.getCardValue}`)
                 }
             }
 
-            if(houseStand === true && playerStand == true){
+            if(houseStand === true && playerStand === true){
                 playingHand = false;
             }
 
