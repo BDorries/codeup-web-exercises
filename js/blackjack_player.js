@@ -6,18 +6,7 @@ class Player{
         this.hand = hand;
         this.score = 0;
         this.cardValue = 0;
-    }
-    getName(){
-        return this.name;
-    }
-    getHand(){
-        return this.hand;
-    }
-    getScore(){
-        return this.score;
-    }
-    getCardValue(){
-        return this.cardValue;
+        this.visibleCardValue = 0;
     }
     incrementScore(){
         this.score++;

@@ -7,16 +7,12 @@ function getCardText(rankDigit){
     switch (rankDigit) {
         case 1 :
             return `Ace`;
-            break;
         case 11 :
             return `Jack`;
-            break;
         case 12 :
             return `Queen`;
-            break;
         case 13 :
             return `King`;
-            break;
         default :
             return rankDigit;
     }
@@ -27,16 +23,12 @@ function setCardSuit(suitNum){
     switch (suitNum) {
         case 1 :
             return `hearts`
-            break;
         case 2 :
             return `diamonds`
-            break;
         case 3 :
             return `spades`
-            break;
         case 4 :
             return `clubs`
-            break;
     }
 }
 
@@ -59,20 +51,12 @@ function shuffleDeck(deck){
     return deck;
 }
 
-function writeHand(Player){
+function writeHand(player){
+    let hand = player.hand;
     let stringBuilder = '';
 
     for (let i = 0; i < hand.length; i++){
-        stringBuilder = stringBuilder + hand[i].cardText + "\n";
-    }
-    return stringBuilder;
-}
-
-function writeHouseHand(hand){
-    let stringBuilder = '';
-
-    for (let i = 0; i < hand.length; i++){
-        if(i===0){
+        if (player.name === 'House' && i === 0){
             stringBuilder = 'HIDDEN' + "\n";
             continue;
         }
@@ -81,36 +65,27 @@ function writeHouseHand(hand){
     return stringBuilder;
 }
 
-function sumCardValue(Player){
+function sumCardValue(player){
     let totalCardValue = 0;
-    for (let i = 0; i < hand.length; i++){
-        totalCardValue += hand[i].cardValue;
-    }
-    return totalCardValue;
-}
-function sumVisibleHouseCardValue(hand){
-    let totalVisibleCardValue = 0;
-    for (let i = 0; i < hand.length; i++){
-        if(i===0){
-            continue;
+    let totalVisibleValue = 0;
+
+    for (let i = 0; i < player.hand.length; i++){
+        if(player.name === "House" && i === 0){
+            totalCardValue += player.hand[i].cardValue;
+        } else{
+            totalVisibleValue += player.hand[i].cardValue;
+            totalCardValue += player.hand[i].cardValue;
         }
-        totalVisibleCardValue += hand[i].cardValue;
     }
-    return totalVisibleCardValue;
+    player.cardValue = totalCardValue;
+    player.visibleCardValue = totalVisibleValue;
+    return player;
 }
 
-function displayPlayerHand(hand){
-    console.log(`Your hand:\n${writeHand(hand)}`);
-    playerCardTotal = sumCardValue(hand);
-    console.log(`Card value: ${playerCardTotal}`);
-}
-
-function displayHouseHand(hand){
-
-    console.log(`The House's hand:\n${writeHouseHand(hand)}`);
-    houseCardTotal = sumCardValue(hand);
-    console.log(`Actual house card value is ${houseCardTotal}`)
-    console.log(`The House's visible card value: ${sumVisibleHouseCardValue(hand)}`);
+function displayHand(player){
+    console.log(`${player.name}'s hand:\n${writeHand(player)}`);
+    player = sumCardValue(player);
+    console.log(`${player.name}'s card value: ${player.visibleCardValue}`);
 }
 
 function dealToHand(hand){
@@ -119,10 +94,11 @@ function dealToHand(hand){
     return hand;
 }
 
-function hit(hand){
-    hand.push(deck.pop());
-    displayPlayerHand(hand);
-    return hand;
+function hit(player){
+    player.hand.push(deck.pop());
+    displayHand(player);
+    //console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
+    return player.hand;
 }
 
 //------Deck creation------//
@@ -134,6 +110,9 @@ for (let i = 1; i<=4; i++){
 
     for (let j = 1; j <= 13; j++){
         const card = {cardValue: j, cardText: `${getCardText(j)} of ${setCardSuit(i)}`}
+        if(card.cardValue > 10){
+            card.cardValue = 10;
+        }
         deck.push(card);
     }
 }
