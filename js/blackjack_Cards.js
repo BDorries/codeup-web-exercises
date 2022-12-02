@@ -68,12 +68,35 @@ function writeHand(hand){
     return stringBuilder;
 }
 
+function writeHouseHand(hand){
+    let stringBuilder = '';
+
+    for (let i = 0; i < hand.length; i++){
+        if(i===0){
+            stringBuilder = 'HIDDEN' + "\n";
+            continue;
+        }
+        stringBuilder = stringBuilder + hand[i].cardText + "\n";
+    }
+    return stringBuilder;
+}
+
 function sumCardValue(hand){
     let totalCardValue = 0;
     for (let i = 0; i < hand.length; i++){
         totalCardValue += hand[i].cardValue;
     }
     return totalCardValue;
+}
+function sumVisibleHouseCardValue(hand){
+    let totalVisibleCardValue = 0;
+    for (let i = 0; i < hand.length; i++){
+        if(i===0){
+            continue;
+        }
+        totalVisibleCardValue += hand[i].cardValue;
+    }
+    return totalVisibleCardValue;
 }
 
 function displayPlayerHand(hand){
@@ -83,9 +106,11 @@ function displayPlayerHand(hand){
 }
 
 function displayHouseHand(hand){
-    console.log(`The House's hand:\n${writeHand(hand)}`);
+
+    console.log(`The House's hand:\n${writeHouseHand(hand)}`);
     houseCardTotal = sumCardValue(hand);
-    console.log(`The House's visible card value: ${houseCardTotal}`);
+    console.log(`Actual house card value is ${houseCardTotal}`)
+    console.log(`The House's visible card value: ${sumVisibleHouseCardValue(hand)}`);
 }
 
 function dealToHand(hand){

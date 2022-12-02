@@ -38,14 +38,8 @@ function gameMenu(){
     return gameMenuChoice;
 }
 
-function computerTurn() {
+function isHandOver(hand){
 
-    if(houseCardTotal > 21){
-        return -1;
-    }
-
-
-    return 0;
 }
 
 
@@ -75,24 +69,49 @@ while (!quit){
         let houseTurn = false;
         displayPlayerHand(playerHand);
         displayHouseHand(houseHand);
+        let playerStand = false;
+        let houseStand = false;
         while(playingHand){
+
             //player turn
-            handChoice = gameMenu();
-            switch (parseInt(handChoice)) {
-                case 1 :
+            if(!playerStand){
+                handChoice = gameMenu();
+                if(parseInt(handChoice)===1){
                     displayPlayerHand(playerHand);
                     playerHand = hit(playerHand);
-                    break;
-                case 2 :
-                    //todo: houseTurn = true;
-                    break;
-                case 3 :
+                }
+                if (parseInt(handChoice)===1){
+                    playerStand = true;
+                }
+                if (parseInt(handChoice)===3){
                     playingHand = false;
+                }
+
             }
+
             //house turn
-            if(houseTurn){
-                houseCardTotal = computerTurn();
+            if(!houseStand){
+                if(houseCardTotal === 21){
+                    houseScore++;
+                    playingHand = false;
+                    console.log(`House wins with a hand valued at 21`)
+                }else
+                if (houseCardTotal <= 17){
+                    console.log(`The house hits...`)
+                    houseHand = hit(houseHand);
+                    displayHouseHand(houseHand);
+                } else
+                if(houseCardTotal > 21){
+                    playerScore++;
+                    playingHand = false;
+                    console.log(`The house busts with a ${houseCardTotal}`)
+                }
             }
+
+            if(houseStand === true && playerStand == true){
+                playingHand = false;
+            }
+
         }
     }
 }
