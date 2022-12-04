@@ -86,6 +86,7 @@ function displayHand(player){
     console.log(`${player.name}'s hand:\n${writeHand(player)}`);
     player = sumCardValue(player);
     console.log(`${player.name}'s card value: ${player.visibleCardValue}`);
+    console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
 }
 
 function dealToHand(hand){
@@ -97,7 +98,7 @@ function dealToHand(hand){
 function hit(player){
     player.hand.push(deck.pop());
     displayHand(player);
-    //console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
+    console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
     return player.hand;
 }
 

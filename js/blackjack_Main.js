@@ -36,6 +36,11 @@ function gameMenu(){
     return prompt("Select an option.");
 }
 
+function handEnded(player){
+    if (player.cardValue >= 21){
+        return true;
+    } else return false;
+}
 
 //------Game Loop------//
 let quit = false;
@@ -60,10 +65,8 @@ while (!quit){
     if(playingHand){
         player.hand = dealToHand(player.hand);
         house.hand = dealToHand(house.hand);
-        //console.log(player.hand);
         displayHand(player);
         displayHand(house);
-        //console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
 
         let playerStand = false;
         let houseStand = false;
@@ -99,31 +102,31 @@ while (!quit){
             }
 
             //house turn
-            if(!houseStand && playingHand){
-                if(house.cardValue === 21){
-                    house.incrementScore();
-                    playingHand = false;
-                    console.log(`House wins with a hand valued at 21`)
-                }else
-                if (house.cardValue <= 17){
+            if(!houseStand && playingHand && !handEnded(house)){
+
+                if (house.cardValue < 17){
                     console.log(`...The house hits...`)
                     houseHand = hit(house);
                 }
-                if(house.cardValue > 21){
-                    player.incrementScore();
-                    playingHand = false;
-                    console.log(`The house busts with a ${house.cardValue}\nYou win!`)
-                }else
-                if(house.cardValue >17 && house.cardValue <= 21){
+
+                if(house.cardValue >= 17 && house.cardValue <= 21){
                     console.log("...The house stands...")
                     houseStand = true;
                     displayHand(house);
-                    //console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
-
                 }
             }
+            if(house.cardValue === 21){
+                    house.incrementScore();
+                    playingHand = false;
+                    console.log(`House wins with a hand valued at 21`)
+                }
+            if(house.cardValue > 21){
+                player.incrementScore();
+                playingHand = false;
+                console.log(`The house busts with a ${house.cardValue}\nYou win!`)
+            }
 
-            if(houseStand === true && playerStand === true){
+            if(playingHand && houseStand === true && playerStand === true){
                 playingHand = false;
                 if(player.cardValue>house.cardValue && player.cardValue <= 21){
                     player.incrementScore()
