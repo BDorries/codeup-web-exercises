@@ -1,0 +1,35 @@
+html{
+    background-color: #40826d;
+    color: yellow;
+}
+header{
+    border-bottom: black 1px solid;
+    width: 100%;
+}
+#upper-text{
+    border-bottom: black 1px solid;
+}
+#vision{
+    position: relative;
+    display: flex;
+}
+.vision-photo #1{
+    clear-after: bottom;
+    float: left;
+}
+.vision-photo #2{
+    float: right;
+}
+.vision-photo img{
+    width: 100%;
+}
+table{
+    width: 80%;
+    border-collapse: collapse;
+    border: black 1px solid;
+}
+td{
+    border: black 1px solid;
+    width: 33%;
+    text-align: center;
+}

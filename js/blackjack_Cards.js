@@ -89,11 +89,33 @@ function displayHand(player){
     console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
 }
 
+// All cards are at face value, except for the King, Queen and Jack which count as 10.
+// An Ace will have a value of 11 unless that would give a player or the dealer a score
+// in excess of 21; in which case, it has a value of 1.
+
+function hasAce(hand) {
+
+    for (let i = 0; i < hand.length; i++) {
+        if(hand[i].cardValue === 1){
+            return true
+        } else return false;
+    }
+}
+
+//DEBUG TO TEST FOR ACES
 function dealToHand(hand){
+    const card = {cardValue: 1, cardText: `Ace of debugging`}
+    hand.push(card);
     hand.push(deck.pop());
-    hand.push(deck.pop());
+
     return hand;
 }
+
+// function dealToHand(hand){
+//     hand.push(deck.pop());
+//     hand.push(deck.pop());
+//     return hand;
+// }
 
 function hit(player){
     player.hand.push(deck.pop());
