@@ -3,11 +3,11 @@ html{
     color: yellow;
 }
 header{
-    border-bottom: black 1px solid;
+    border-bottom: yellow 1px solid;
     width: 100%;
 }
 #upper-text{
-    border-bottom: black 1px solid;
+    border-bottom: yellow 1px solid;
 }
 #vision{
     position: relative;
@@ -26,10 +26,10 @@ header{
 table{
     width: 80%;
     border-collapse: collapse;
-    border: black 1px solid;
+    border: yellow 1px solid;
 }
 td{
-    border: black 1px solid;
+    border: yellow 1px solid;
     width: 33%;
     text-align: center;
 }
