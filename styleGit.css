@@ -1,0 +1,23 @@
+html{
+    background-color: #0d1117;
+}
+th{
+    background-color: #484f58;
+}
+table{
+    border-collapse: collapse;
+    border: #30363d 1px solid;
+}
+header{
+    width: 100%;
+    display: flex;
+}
+.nav-bar{
+    justify-content: space-evenly;
+    flex-direction: row;
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    color: #484f58;
+}
