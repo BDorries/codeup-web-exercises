@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register With Us</title>
+</head>
+<body>
+<form method="POST" action="https://request-inspector.glitch.me/">
+  <label for="email">Email</label>
+  <input type="username" id="email" name="email" type="text" value="Please enter your email">
+  <br>
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" type="text">
+
+<!--  Changed from radio to checkbox because radios should not be used for multiple selections-->
+  <h2>How did you hear about us?</h2>
+  <input type="checkbox" id="billboard" name="billboard">
+  <label for="billboard">Billboard</label><br>
+  <input type="checkbox" id="radio" name="radio">
+  <label for="radio">Radio</label><br>
+  <input type="checkbox" id="internet" name="internet">
+  <label for="internet">Internet</label><br>
+  <input type="checkbox" id="other" name="other">
+  <label for="other">Other</label><br>
+  <br>
+
+  <label for="browser">What browser are you using?</label>
+
+  <select name="browser" id="browser">
+    <option value="firefox">Firefox</option>
+    <option value="chrome">Chrome</option>
+    <option value="safari">Safari</option>
+    <option value="opera">Opera</option>
+  </select>
+
+</form>
+</body>
+</html>
