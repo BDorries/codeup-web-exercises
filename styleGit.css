@@ -9,15 +9,27 @@ table{
     border: #30363d 1px solid;
 }
 header{
+    margin-top: 25px;
     width: 100%;
     display: flex;
+    justify-content: space-between;
+    border-bottom: #30363d 1px solid;
 }
 .nav-bar{
-    justify-content: space-evenly;
-    flex-direction: row;
+    width: 80%;
+}
+.nav-bar a{
+    margin: 3%;
+    text-align: center;
     color: white;
     text-decoration: none;
 }
 a:hover{
     color: #484f58;
+}
+#search{
+    background-color: #89a4cc;
+}
+::placeholder{
+    color: white
 }
