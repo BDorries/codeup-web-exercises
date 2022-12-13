@@ -1,0 +1,32 @@
+:root{
+    --bg-info: lightblue;
+    --bg-success: lightgreen;
+    --bg-warning: lightyellow;
+    --bg-error: pink;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+}
+.message{
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    border: lightgrey 1px solid
+}
+.message.message-info{
+    background-color: var(--bg-info);
+}
+.message.message-success{
+    background-color: var(--bg-success);
+}
+.message.message-warning{
+    background-color: var(--bg-warning);
+}
+.message.message-error{
+    background-color: var(--bg-error);
+}
