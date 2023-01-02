@@ -1,0 +1,25 @@
+nav{
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+}
+nav li{
+    list-style: none;
+    display: inline;
+    padding: 10px;
+    font-weight: bold;
+}
+ul{
+    /*padding: 10px;*/
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+h1{
+    justify-content: center;
+    font-size: 40px;
+}
+a:hover{
+    color: blue;
+}

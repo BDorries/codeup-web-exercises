@@ -86,7 +86,7 @@ function displayHand(player){
     console.log(`${player.name}'s hand:\n${writeHand(player)}`);
     player = sumCardValue(player);
     console.log(`${player.name}'s card value: ${player.visibleCardValue}`);
-    console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
+    // console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
 }
 
 // All cards are at face value, except for the King, Queen and Jack which count as 10.
@@ -103,24 +103,24 @@ function hasAce(hand) {
 }
 
 //DEBUG TO TEST FOR ACES
-function dealToHand(hand){
-    const card = {cardValue: 1, cardText: `Ace of debugging`}
-    hand.push(card);
-    hand.push(deck.pop());
-
-    return hand;
-}
-
 // function dealToHand(hand){
+//     const card = {cardValue: 1, cardText: `Ace of debugging`}
+//     hand.push(card);
 //     hand.push(deck.pop());
-//     hand.push(deck.pop());
+//
 //     return hand;
 // }
+
+function dealToHand(hand){
+    hand.push(deck.pop());
+    hand.push(deck.pop());
+    return hand;
+}
 
 function hit(player){
     player.hand.push(deck.pop());
     displayHand(player);
-    console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
+    // console.log(`**DEBUG** House actual cardValue is: ${house.cardValue}`);
     return player.hand;
 }
 
